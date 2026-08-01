@@ -1,0 +1,14 @@
+export const metadata = {
+  title: "Hello Claude App",
+  description: "Minimal Next.js app with a Claude API route",
+};
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <body style={{ fontFamily: "system-ui, sans-serif", margin: 0 }}>
+        {children}
+      </body>
+    </html>
+  );
+}
