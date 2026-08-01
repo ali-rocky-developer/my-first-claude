@@ -2,17 +2,17 @@ export async function POST(req) {
   try {
     const { prompt } = await req.json();
 
-    const response = await fetch("https://api.anthropic.com/v1/messages", {
+    const model = "gemini-2.0-flash";
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${process.env.GEMINI_API_KEY}`;
+
+    const response = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "x-api-key": process.env.ANTHROPIC_API_KEY,
-        "anthropic-version": "2023-06-01",
       },
       body: JSON.stringify({
-        model: "claude-sonnet-4-6",
-        max_tokens: 300,
-        messages: [{ role: "user", content: prompt }],
+        contents: [{ parts: [{ text: prompt }] }],
+        generationConfig: { maxOutputTokens: 300 },
       }),
     });
 
@@ -22,7 +22,8 @@ export async function POST(req) {
     }
 
     const data = await response.json();
-    const reply = data.content?.[0]?.text ?? "No reply";
+    const reply =
+      data.candidates?.[0]?.content?.parts?.[0]?.text ?? "No reply";
 
     return Response.json({ reply });
   } catch (err) {

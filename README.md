@@ -2,7 +2,7 @@
 
 Minimal Next.js app with:
 - A "Hello, world!" page
-- A server-side API route (`/api/chat`) that calls the Claude API, keeping your API key safe on the server
+- A server-side API route (`/api/chat`) that calls the Google Gemini API, keeping your API key safe on the server
 
 ## Local development
 
@@ -10,10 +10,10 @@ Minimal Next.js app with:
 npm install
 ```
 
-Create a `.env.local` file in the project root:
+Get a free Gemini API key at [aistudio.google.com/apikey](https://aistudio.google.com/apikey), then create a `.env.local` file in the project root:
 
 ```
-ANTHROPIC_API_KEY=your_key_here
+GEMINI_API_KEY=your_key_here
 ```
 
 Then run:
@@ -31,5 +31,5 @@ Visit http://localhost:3000
 3. Vercel auto-detects Next.js — no build config needed
 4. Before deploying, add an environment variable:
    - Go to Project Settings → Environment Variables
-   - Add `ANTHROPIC_API_KEY` with your key
+   - Add `GEMINI_API_KEY` with your key
 5. Deploy — every push to `main` will auto-redeploy
